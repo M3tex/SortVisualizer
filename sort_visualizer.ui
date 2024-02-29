@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="gtk" version="4.0"/>
+
+  <object class="GtkAdjustment" id="delay_adjustment">
+    <property name="upper">100000.000</property>
+    <property name="value">10.000</property>
+    <property name="step-increment">0.1</property>
+    <property name="page-increment">1.0</property>
+  </object>
+
+  <object class="GtkAdjustment" id="nb_adjustement">
+    <property name="upper">10000000</property>
+    <property name="lower">2</property>
+    <property name="value">100</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
+  </object>
+
+  <object class="GtkPopover" id="popover1">
+    <property name="child">
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">10</property>
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">3</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" translatable="1">Delay (ms)</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSpinButton" id="delay_spinbutton">
+                <property name="focusable">1</property>
+                <property name="adjustment">delay_adjustment</property>
+                <!-- <property name="climb-rate">1.0</property> -->
+                <property name="digits">3</property>
+                <property name="numeric">1</property>
+                <property name="value">10.000</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">3</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" translatable="1">Number of elements</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSpinButton" id="nb_spinbutton">
+                <property name="focusable">1</property>
+                <property name="adjustment">nb_adjustement</property>
+                <property name="climb-rate">1</property>
+                <property name="numeric">1</property>
+                <property name="value">100</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </property>
+  </object>
+  <object class="GtkHeaderBar" id="header_bar">
+     
+    <property name="hexpand">1</property>
+    <property name="decoration-layout">menu:minimize,maximize,close</property>
+    <child type="title">
+      <object class="GtkLabel" id="title">
+         
+        <property name="hexpand">1</property>
+        <property name="label" translatable="1">Sort Visualizer</property>
+        <property name="justify">center</property>
+        <attributes>
+          <attribute name="weight" value="bold"></attribute>
+          <attribute name="scale" value="1"></attribute>
+        </attributes>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="left_header_box">
+         
+        <property name="halign">end</property>
+        <property name="hexpand">1</property>
+        <property name="spacing">3</property>
+        <child>
+          <object class="GtkComboBoxText" id="sort_selection">
+             
+            <property name="halign">start</property>
+            <property name="hexpand">1</property>
+            <items>
+              <item id="1" translatable="yes">Bubble Sort</item>
+              <item id="2" translatable="yes">Selection Sort</item>
+              <item id="3" translatable="yes">Insertion Sort</item>
+              <item id="4" translatable="yes">Merge Sort</item>
+              <item id="5" translatable="yes">Quick Sort</item>
+              <item id="6" translatable="yes">Heap Sort</item>
+              <item id="7" translatable="yes">Cocktail Sort</item>
+            </items>
+            <property name="active">0</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkMenuButton" id="menu_button">
+            <property name="focusable">1</property>
+            <property name="focus-on-click">0</property>
+            <property name="receives-default">1</property>
+            <property name="popover">popover1</property>
+            <child>
+                <object class="GtkImage" id="menu_icon">
+                 
+                <property name="icon-name">document-properties</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child type="end">
+      <object class="GtkBox" id="header_buttons_box">
+         
+        <property name="halign">end</property>
+        <property name="hexpand">1</property>
+        <property name="spacing">3</property>
+        <child>
+          <object class="GtkButton" id="play_button">
+             
+            <property name="focusable">1</property>
+            <property name="receives-default">1</property>
+            <property name="halign">end</property>
+            <property name="hexpand">1</property>
+            <child>
+              <object class="GtkImage" id="play_icon">
+                 
+                <property name="icon-name">media-playback-start</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="rdm_button">
+             
+            <property name="focusable">1</property>
+            <property name="receives-default">1</property>
+            <property name="halign">end</property>
+            <property name="hexpand">1</property>
+            <child>
+              <object class="GtkImage" id="rdm_icon">
+                 
+                <property name="icon-name">media-playlist-shuffle</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkWindow" id="window">
+    <property name="default-width">850</property>
+    <property name="default-height">500</property>
+    <property name="child">
+      <object class="GtkBox" id="main_box">
+         
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkDrawingArea" id="draw_area">
+             
+            <property name="vexpand">1</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="bottom_box">
+             
+            <property name="homogeneous">1</property>
+            <child>
+              <object class="GtkLabel" id="comp_label">
+                 
+                <property name="label" translatable="1">Comparisons: 0</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="swaps_label">
+                 
+                <property name="label" translatable="1">Swaps: 0</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="complexity_label">
+                 
+                <property name="label" translatable="1">Time complexity: O(n*log(n))</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </property>
+  </object>
+</interface>
